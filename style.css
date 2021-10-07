@@ -15,9 +15,12 @@ body {
   margin: 0;
 }
 
-
+h1 {
+  margin: 2px;
+  padding: 6px;
+}
 .container {
-  padding: 20px;
+  padding: 6px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
