@@ -7,17 +7,14 @@ boxes.forEach((box) => {
     // removeColor(box);
     highlightBox(box);
     if (box.classList.contains("active")) {
-      setTimeout(function () {
-        insertColor(box)
-      }, 0)
+      insertColor(box)
+      colorMover(box, 2)
       
     } else {
       return (box.style.backgroundColor = "#fff");
     }
-    
-    // flashBoxes(box)
-    
   });
+  
 });
 
 
@@ -35,6 +32,14 @@ function pickRandomColor() {
     "#DA70D6",
     "#778899",
     "#800080",
+    "#8E388E",
+    "#EE0000",
+    "#CDAA7D",
+    "#7171C6",
+    "#F0E68C",
+    "#00FF7F",
+    "#2F4F4F",
+    "#1E90FF",
   ];
 
   let randomIndex = Math.floor(Math.random() * colors.length);
@@ -47,74 +52,56 @@ function highlightBox(box) {
 
 
 function insertColor(box) {
-     return (box.style.backgroundColor = pickRandomColor(box));
+  const colorBox = (box.style.backgroundColor = pickRandomColor(box));
+  return colorBox
       
-  }
+}
+
+
+function resetColor(box) {
+  const colorBox = (box.style.backgroundColor = "#fff");
+    return colorBox;  
+}
+
+
+function colorMover(box, count) {
+  // let count = 0;
+  const max = 10;
+
+  if (count < max) {
+    setTimeout(function () {
+      insertColor(box)
+      count++;
+    }, 1000);
+
+    setTimeout(function () {
+      insertColor(box);
+      count++;
+    }, 1000);
   
+  }
+    
 
 
+  // let interval = setInterval(function () {
+  //   if (count <= max) {
+  //     highlightBox(box);
+  //     insertColor(box)
+  //     count++
+  //   } else {
+  //     clearInterval(interval);
+  //   }
+  // })
+  // resetColor(box)
 
-
-
-
-  // if (box.classList.contains("active")) {
-  //     const times = 0;
-
-  //     const interval = setInterval(function () {
-        
-  //         if (times < 3) {
-  //           setTimeout(() => {
-  //             insertColor(box);
-  //           }, 1000);
-  //           times++;
-  //         } else {
-  //         removeColor(box);
-  //       }
-  //     }, 1000);
-  //   return (box.style.backgroundColor = pickRandomColor());
-  //   // return removeColor(box)
-  // } else {
-  //   return (box.style.backgroundColor = "#fff");
-  // }
-
-
-
-
+}
 
 
 function removeColor(box) {
   return box.classList.remove("active");
 }
 
-// function flashBoxes(box) {
- 
-//   const times = 0;
 
-//     insertColor(box);
-//     increment(times)
-// }
-
-// function increment(times) {
-//     if (times >= 10) {
-//         clearInterval(interval)
-//         return;
-//     }
-//     i++
-// }
-
-
-// function flashBoxes(box) {
-//   insertColor(box);
-//   const times = 0;
-
-//   const interval = setInterval(function () {
-//     if (times <= 10) {
-//       setTimeout(function () {
-//         insertColor(box);
-//       }, 200);
-//       times++;
-//     } else {
-//       clearInterval(interval);
-//     }
-//   }, 1000);
-// }
+function stopTimeLoop() {
+  clearTimeout(colorMover)
+}
