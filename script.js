@@ -4,9 +4,17 @@ const boxes = document.querySelectorAll(".box");
 
 boxes.forEach((box) => {
   box.addEventListener("click", function () {
-    removeColor(box);
+    // removeColor(box);
     highlightBox(box);
-    insertColor(box);
+    if (box.classList.contains("active")) {
+      setTimeout(function () {
+        insertColor(box)
+      }, 0)
+      
+    } else {
+      return (box.style.backgroundColor = "#fff");
+    }
+    
     // flashBoxes(box)
     
   });
@@ -39,27 +47,36 @@ function highlightBox(box) {
 
 
 function insertColor(box) {
-  
-  if (box.classList.contains("active")) {
-      const times = 0;
-
-      const interval = setInterval(function () {
-        
-          if (times < 3) {
-            setTimeout(() => {
-              insertColor(box);
-            }, 1000);
-            times++;
-          } else {
-          removeColor(box);
-        }
-      }, 1000);
-    return (box.style.backgroundColor = pickRandomColor());
-    // return removeColor(box)
-  } else {
-    return (box.style.backgroundColor = "#fff");
+     return (box.style.backgroundColor = pickRandomColor(box));
+      
   }
-}
+  
+
+
+
+
+
+
+  // if (box.classList.contains("active")) {
+  //     const times = 0;
+
+  //     const interval = setInterval(function () {
+        
+  //         if (times < 3) {
+  //           setTimeout(() => {
+  //             insertColor(box);
+  //           }, 1000);
+  //           times++;
+  //         } else {
+  //         removeColor(box);
+  //       }
+  //     }, 1000);
+  //   return (box.style.backgroundColor = pickRandomColor());
+  //   // return removeColor(box)
+  // } else {
+  //   return (box.style.backgroundColor = "#fff");
+  // }
+
 
 
 
